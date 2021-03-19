@@ -20,6 +20,7 @@
 				<div class="container-fluid">
 					<div class="row">
 						<h2>Log In</h2>
+						@include('errors')
 					</div>
 					<div class="row">
 						<form action="{{route('login.attempt')}}" method="POST" class="form-group">
@@ -31,7 +32,7 @@
 								<!-- <span class="fa fa-lock"></span> -->
 								<input type="password" name="password" id="password" class="form__input" placeholder="Password">
 							</div>
-							@if ($errors->has('email'))
+							<!-- @if ($errors->has('email'))
 								<span>
 									<h3>{{ $errors->first('email') }}</h3>
 								</span>
@@ -40,7 +41,7 @@
 								<span>
 									<h3>{{ $errors->first('password') }}</h3>
 								</span>
-							@endif
+							@endif -->
 							<div class="row">
 								<input type="submit" value="Submit" class="btn">
 							</div>

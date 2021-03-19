@@ -9,10 +9,11 @@
                 <form method="POST" action="{{route('admin.login.attempt')}}" class="box">
                     @csrf
                     <h1>Admin</h1>
+                    @include('errors')
                     <p class="text-muted"> Please enter your email and password!</p>
                      <input type="text" name="email" placeholder="Email">
                       <input type="password" name="password" placeholder="Password"> 
-                      @if ($errors->has('email'))
+                      <!-- @if ($errors->has('email'))
                         <span>
                             <h3>{{ $errors->first('email') }}</h3>
                         </span>
@@ -21,7 +22,7 @@
                         <span>
                             <h3>{{ $errors->first('password') }}</h3>
                         </span>
-                     @endif
+                     @endif -->
                       <input type="submit" name="" value="Login">
                 </form>
             </div>
