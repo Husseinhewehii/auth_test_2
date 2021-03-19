@@ -23,7 +23,7 @@
 						@include('errors')
 					</div>
 					<div class="row">
-						<form action="{{route('login.attempt')}}" method="POST" class="form-group">
+						<form action="{{\LaravelLocalization::localizeURL(route('login.attempt'))}}" method="POST" class="form-group">
                             @csrf
 							<div class="row">
 								<input type="text" name="email" id="email" class="form__input" placeholder="Email">

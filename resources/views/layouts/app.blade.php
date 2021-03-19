@@ -1,6 +1,3 @@
-<?php
-    use App\Constants\UserTypes;
-?>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -13,6 +10,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.0.5/dist/js/adminlte.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.0.5/dist/css/adminlte.min.css">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -28,51 +27,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <!-- <a class="navbar-brand" href="#">Admin</a> -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
-                </li>
-                
-                @guest
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Admin
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{route('admin.login')}}">Login</a></li>
-                    </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Normal
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
-                            <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
-                        </ul>
-                     </li>
-                @else
-                    @if(auth()->user()->type == UserTypes::ADMIN)
-                        <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-                    @else
-                        <li class="nav-item"><a class="nav-link" href="#">{{strtok(auth()->user()->name, " ")}}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('logout')}}">Logout</a></li>
-                    @endif
-                @endguest
-                
-            </ul>
-            </div>
-        </div>
-    </nav>
-                           
+    @include('layouts.navbar')                       
 
         <main class="py-4">
             @yield('content')

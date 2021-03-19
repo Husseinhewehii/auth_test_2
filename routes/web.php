@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,25 +18,37 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 'HomeController@home')->name('home');
 
-Route::namespace('normal')->group(function(){
-    Route::get('/register', 'AuthController@register')->name('register');
-    Route::post('/register', 'AuthController@registerAttempt')->name('register.attempt');
-    Route::get('/login', 'AuthController@login')->name('login');
-    Route::post('/login/attempt', 'AuthController@loginAttempt')->name('login.attempt');
-});
 
-Route::namespace('normal')->middleware('auth')->group(function(){
-    Route::get('/logout', 'AuthController@logout')->name('logout');
-});
+Route::group([
+    'prefix' => '{locale?}',
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function(){
+	/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+	Route::get('/', 'HomeController@home')->middleware('throttle:30,1')->name('home');
 
-Route::prefix('admin')->attribute('namespace', 'Admin')->group(function(){
-    Route::get('/login', 'AuthController@login')->name('admin.login');
-    Route::post('/login/attempt', 'AuthController@loginAttempt')->name('admin.login.attempt');
-});
+    Route::namespace('normal')->group(function(){
+        Route::get('/register', 'AuthController@register')->name('register');
+        Route::post('/register', 'AuthController@registerAttempt')->name('register.attempt');
+        Route::get('/login', 'AuthController@login')->name('login');
+        Route::post('/login/attempt', 'AuthController@loginAttempt')->name('login.attempt');
+        Route::middleware('auth')->group(function(){
+            Route::get('/logout', 'AuthController@logout')->name('logout');
+            Route::get('/greet/{user}', 'GreetUserController')->name('greet');
+        });
+    });
 
-Route::prefix('admin')->attribute('namespace', 'Admin')->middleware('auth')->group(function(){
-    Route::get('/logout', 'AuthController@logout')->name('admin.logout');
+
+
+    Route::prefix('admin')->attribute('namespace', 'Admin')->group(function(){
+        Route::get('/login', 'AuthController@login')->name('admin.login');
+        Route::post('/login/attempt', 'AuthController@loginAttempt')->name('admin.login.attempt');
+        Route::middleware('auth')->group(function(){
+            Route::get('/dashboard', 'HomeController@index')->name('admin.home.index');
+            Route::resource('users', 'UserAdminsController', ['as' => 'admin']);
+            // Route::get('/normals-index', 'UserController@indexNormals')->name('admin.normals.index');
+            Route::get('/logout', 'AuthController@logout')->name('admin.logout');
+        });
+    });
 });
 

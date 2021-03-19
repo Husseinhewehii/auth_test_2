@@ -22,7 +22,7 @@
 						<h2>Sign Up</h2>
 					</div>
 					<div class="row">
-						<form action="{{route('register')}}" method="POST" class="form-group">
+						<form action="{{\LaravelLocalization::localizeURL(route('register'))}}" method="POST" class="form-group">
                             @csrf
 							<div class="row">
 								<input type="text" name="email" id="email" class="form__input" placeholder="Email">

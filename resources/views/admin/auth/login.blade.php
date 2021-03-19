@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <form method="POST" action="{{route('admin.login.attempt')}}" class="box">
+                <form method="POST" action="{{\LaravelLocalization::localizeURL(route('admin.login.attempt'))}}" class="box">
                     @csrf
                     <h1>Admin</h1>
                     @include('errors')
