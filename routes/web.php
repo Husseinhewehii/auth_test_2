@@ -45,8 +45,7 @@ Route::group([
         Route::post('/login/attempt', 'AuthController@loginAttempt')->name('admin.login.attempt');
         Route::middleware('auth')->group(function(){
             Route::get('/dashboard', 'HomeController@index')->name('admin.home.index');
-            Route::resource('users', 'UserAdminsController', ['as' => 'admin']);
-            // Route::get('/normals-index', 'UserController@indexNormals')->name('admin.normals.index');
+            Route::resource('users', 'UserAdminsController', ['as' => 'admin'])->except('show');
             Route::get('/logout', 'AuthController@logout')->name('admin.logout');
         });
     });

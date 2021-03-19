@@ -35,6 +35,7 @@ class UserAdminsController extends Controller
     }
 
     public function edit(User $user){
+        echo gettype($user);die;
         return view('admin.users.admins.edit', ['user' => $user]);
     }
 
@@ -51,4 +52,6 @@ class UserAdminsController extends Controller
 
         return redirect()->back();
     }
+
+    
 }
