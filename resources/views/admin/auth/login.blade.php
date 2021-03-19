@@ -12,15 +12,17 @@
                     <p class="text-muted"> Please enter your email and password!</p>
                      <input type="text" name="email" placeholder="Email">
                       <input type="password" name="password" placeholder="Password"> 
-                      <a class="forgot text-muted" href="#">Forgot password?</a> 
+                      @if ($errors->has('email'))
+                        <span>
+                            <h3>{{ $errors->first('email') }}</h3>
+                        </span>
+                     @endif
+                     @if ($errors->has('password'))
+                        <span>
+                            <h3>{{ $errors->first('password') }}</h3>
+                        </span>
+                     @endif
                       <input type="submit" name="" value="Login">
-                    <!-- <div class="col-md-12">
-                        <ul class="social-network social-circle">
-                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-google-plus"></i></a></li>
-                        </ul>
-                    </div> -->
                 </form>
             </div>
         </div>

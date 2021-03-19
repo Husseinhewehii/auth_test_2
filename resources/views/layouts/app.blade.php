@@ -63,6 +63,7 @@
                     @if(auth()->user()->type == UserTypes::ADMIN)
                         <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
                     @else
+                        <li class="nav-item"><a class="nav-link" href="#">{{strtok(auth()->user()->name, " ")}}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('logout')}}">Logout</a></li>
                     @endif
                 @endguest

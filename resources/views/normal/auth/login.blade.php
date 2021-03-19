@@ -31,6 +31,16 @@
 								<!-- <span class="fa fa-lock"></span> -->
 								<input type="password" name="password" id="password" class="form__input" placeholder="Password">
 							</div>
+							@if ($errors->has('email'))
+								<span>
+									<h3>{{ $errors->first('email') }}</h3>
+								</span>
+							@endif
+							@if ($errors->has('password'))
+								<span>
+									<h3>{{ $errors->first('password') }}</h3>
+								</span>
+							@endif
 							<div class="row">
 								<input type="submit" value="Submit" class="btn">
 							</div>

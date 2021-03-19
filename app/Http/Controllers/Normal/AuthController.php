@@ -30,7 +30,10 @@ class AuthController extends Controller
         if (Auth::attempt($data)) {
             return redirect()->route('home');
         }
-        return redirect()->route('login');
+
+        return redirect()->route('login')->withInput()->withErrors([
+            'password' => 'Email Or Password Is Incorrect'
+        ]);
     }
 
     public function logout()
