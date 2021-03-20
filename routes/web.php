@@ -49,6 +49,7 @@ Route::group([
             Route::resource('normals', 'UserNormalController', ['as' => 'admin', 'parameters' => [
                 'normals' => 'user'
             ]])->except('show');
+            Route::resource('products', 'ProductController', ['as' => 'admin']);
             Route::get('/logout', 'AuthController@logout')->name('admin.logout');
         });
     });

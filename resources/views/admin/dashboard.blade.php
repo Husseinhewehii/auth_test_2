@@ -14,6 +14,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -54,7 +58,7 @@
         </ul>
     </li>
     <li>
-      <a href="#">
+      <a href="{{\LaravelLocalization::localizeURL(route('admin.products.index'))}}">
          Products
       </a>
     </li>

@@ -3,12 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\ProductService;
 use App\Models\Product;
+use App\Repositories\LanguageRepository;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
-
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class ProductController extends Controller
 {
+
+    protected $languageRepository;
+    protected $productRepository;
+    protected $productService;
+
+    public function __construct(LanguageRepository $languageRepository, ProductRepository $productRepository, ProductService $prodcutService)
+    {
+        $this->languageRepository = $languageRepository;
+        $this->productRepository = $productRepository;
+        $this->productService = $prodcutService;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +31,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = $this->productRepository->getAllProducts();
+        foreach ($products as $product) {
+            echo json_decode($product->name)->en;die;
+        }
+        return view('admin.products.index');
     }
 
     /**
@@ -26,7 +45,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $languages = $this->languageRepository->getAllLanguages();
+        return view('admin.products.create', ['languages' => $languages]);
     }
 
     /**
@@ -37,7 +57,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->productService->fillFromRequest($request);
+        return redirect(LaravelLocalization::localizeURL(route('admin.products.index')));
     }
 
     /**
