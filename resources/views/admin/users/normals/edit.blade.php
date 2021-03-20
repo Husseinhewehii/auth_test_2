@@ -1,5 +1,5 @@
 @extends('admin.dashboard')
-
+<?php use App\Constants\UserStatus; ?>
 @section('content')
 <div class="container">
 <h1>Edit Admin</h1>
@@ -30,6 +30,18 @@
         <div class="col-sm-4">
         <input value="{{old('phone', $user->phone)}}" type="text" name="phone" class="form-control" id="inputEmail3" placeholder="Phone">
         </div>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <select class="form-control active" name="status">
+            <option value="">{{ trans('select_status') }}</option>
+            @foreach(UserStatus::getList() as $key => $value)
+                <option
+                    value="{{ $key }}" {{ old("status",$user->status) == "$key" ? "selected":null }}>
+                    {{ $value }}
+                </option>
+            @endforeach
+        </select>
     </div>
 	<div class="form-group row">
     		<div class="col-sm-10">

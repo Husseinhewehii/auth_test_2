@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Home Here</h1>
+    <h1>
+        <a href="{{LaravelLocalization::localizeURL(route('products.index'))}}">Products</a><span>(@productsCount)</span>
+    </h1>
 @endsection

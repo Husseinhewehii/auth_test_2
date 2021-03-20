@@ -1,3 +1,4 @@
+<?php use App\Constants\UserStatus; ?>
 @extends('admin.dashboard')
 
 @section('content')
@@ -18,7 +19,11 @@
                                 <li class="list-group-item">
                                     <div class="checkbox">
                                         <label >
-                                            {{$user->name}}
+                                            Name: {{$user->name}}
+                                        </label>
+                                        <br>
+                                        <label >
+                                            Status: {{UserStatus::getOne($user->status)}}
                                         </label>
                                     </div>
                                     <div class="pull-right action-buttons">

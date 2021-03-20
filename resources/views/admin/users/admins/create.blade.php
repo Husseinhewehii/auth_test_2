@@ -4,6 +4,7 @@
 <h1>Add Admin User</h1>
 <div class="container">
 <form action="{{ \LaravelLocalization::localizeURL(route('admin.users.store')) }}" method="post">
+    @include('errors')
     @csrf
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>

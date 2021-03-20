@@ -5,6 +5,7 @@
 <div class="container">
 <form action="{{ \LaravelLocalization::localizeURL(route('admin.products.store')) }}" method="post">
 <!-- <form id='productForm' action="#" > -->
+    @include('errors')
     @csrf
     <div class="container">
         <input type="hidden" id="name" name="name" value="">
@@ -29,13 +30,26 @@
         @endforeach
     </div>
     
-    
     <div class="form-group row">
         <label for="price" class="col-sm-2 col-form-label">Price</label>
         <div class="col-sm-4">
         <input value="{{old('price')}}" type="price" name="price" class="form-control" id="price" placeholder="Price">
         </div>
     </div>
+
+    <div class="form-group row">
+        <label>Image</label>
+        <div class="image-box">
+            <div class="js--image-preview"></div>
+            <div class="upload-options">
+                <label>
+                    <input type="file" class="image-upload" accept="image/*" name="image" />
+                </label>
+            </div>
+        </div>
+    </div>
+
+    
     
 	<div class="form-group row">
     		<div class="col-sm-10">

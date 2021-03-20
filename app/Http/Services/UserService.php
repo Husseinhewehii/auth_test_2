@@ -15,7 +15,6 @@ class UserService
         }
 
         $user->fill($request->all());
-        // $user->type = $request->type;
         $user->save();
 
         return $user;

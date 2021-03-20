@@ -35,6 +35,7 @@ Route::group([
         Route::middleware('auth')->group(function(){
             Route::get('/logout', 'AuthController@logout')->name('logout');
             Route::get('/greet/{user}', 'GreetUserController')->name('greet');
+            Route::resource('products', 'ProductController')->except('show');
         });
     });
 
@@ -43,7 +44,7 @@ Route::group([
     Route::prefix('admin')->attribute('namespace', 'Admin')->group(function(){
         Route::get('/login', 'AuthController@login')->name('admin.login');
         Route::post('/login/attempt', 'AuthController@loginAttempt')->name('admin.login.attempt');
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['auth', 'admin:web'])->group(function(){
             Route::get('/dashboard', 'HomeController@index')->name('admin.home.index');
             Route::resource('users', 'UserAdminsController', ['as' => 'admin'])->except('show');
             Route::resource('normals', 'UserNormalController', ['as' => 'admin', 'parameters' => [

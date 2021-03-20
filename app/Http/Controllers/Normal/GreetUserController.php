@@ -14,7 +14,7 @@ class GreetUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(User $user)
+    public function __invoke($locale, User $user)
     {
         return view('greet', ['user' => $user]);
     }

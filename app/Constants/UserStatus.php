@@ -4,14 +4,14 @@ namespace App\Constants;
 
 final class UserStatus
 {
-    const INACTIVE = 0;
     const ACTIVE = 1;
+    const INACTIVE = 2;
 
     public static function getList()
     {
         return [
-            UserStatus::INACTIVE => trans("inactive"),
-            UserStatus::ACTIVE => trans("active"),
+            UserStatus::ACTIVE => "Active",
+            UserStatus::INACTIVE => "Inactive",
         ];
     }
 

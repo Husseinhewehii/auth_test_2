@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Constants\UserTypes;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserCreateRequest;
 use App\Http\Services\UserService;
 use App\Models\User;
 use App\Repositories\UserRepository;
@@ -31,7 +32,7 @@ class UserAdminsController extends Controller
         return view('admin.users.admins.create');
     }
 
-    public function store(Request $request, $locale)
+    public function store(UserCreateRequest $request, $locale)
     {
         request()->query->set('type', UserTypes::ADMIN);
         $this->userService->fillFromRequest($request);

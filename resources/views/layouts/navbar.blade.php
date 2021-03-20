@@ -51,7 +51,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{\LaravelLocalization::localizeURL(route('admin.home.index'))}}">Dashboard</a></li>
                     @else
                         <li class="nav-item"><a class="nav-link" href="#">@greet({{strtok(auth()->user()->name, " ")}})</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('greet', ['user'=> auth()->user()])}}">Greetings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{\LaravelLocalization::localizeURL(route('greet', ['user'=> auth()->user()]))}}">Greetings</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('logout')}}">Logout</a></li>
                     @endif
                 @endguest

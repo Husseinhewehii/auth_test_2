@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Normal;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProductCreateRequest;
-use App\Http\Services\ProductService;
 use App\Models\Product;
-use App\Repositories\LanguageRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -14,15 +11,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class ProductController extends Controller
 {
 
-    protected $languageRepository;
     protected $productRepository;
-    protected $productService;
 
-    public function __construct(LanguageRepository $languageRepository, ProductRepository $productRepository, ProductService $prodcutService)
+    public function __construct(ProductRepository $productRepository)
     {
-        $this->languageRepository = $languageRepository;
         $this->productRepository = $productRepository;
-        $this->productService = $prodcutService;
     }
     
     /**
@@ -33,7 +26,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productRepository->getAllProducts();
-        return view('admin.products.index',['products' => $products]);
+        return view('normal.products.index',['products' => $products]);
     }
 
     /**
@@ -43,8 +36,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $languages = $this->languageRepository->getAllLanguages();
-        return view('admin.products.create', ['languages' => $languages]);
+        
     }
 
     /**
@@ -55,8 +47,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->productService->fillFromRequest($request);
-        return redirect(LaravelLocalization::localizeURL(route('admin.products.index')));
+       
     }
 
     /**
@@ -99,10 +90,8 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($locale, Product $product)
+    public function destroy(Product $product)
     {
-        $product->delete();
-
-        return redirect()->back();
+        //
     }
 }

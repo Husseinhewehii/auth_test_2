@@ -22,7 +22,7 @@
                                         </label>
                                     </div>
                                     <div class="pull-right action-buttons">
-                                        <a href="{{\LaravelLocalization::localizeURL(route('admin.users.edit',['user' => $user]))}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <!-- <a href="{{\LaravelLocalization::localizeURL(route('admin.users.edit',['user' => $user]))}}"><span class="glyphicon glyphicon-pencil"></span></a> -->
                                         <form method="POST" action="{{ \LaravelLocalization::localizeURL(route('admin.users.destroy', ['user' =>$user])) }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}

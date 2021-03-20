@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\DB;
 
 class BladeServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,11 @@ class BladeServiceProvider extends ServiceProvider
     {
         Blade::directive('greet', function ($user) {
             return "Hello {$user}";
+        });
+
+        Blade::directive('productsCount', function ($user) {
+            $productsCount = DB::table('products')->count();
+            return $productsCount;
         });
     }
 }

@@ -40,7 +40,7 @@
          
     <div class="sidebar-container">
     <div class="sidebar-logo">
-        Project Name
+         <a href="{{\LaravelLocalization::localizeURL(route('home'))}}">Home Web</a>
     </div>
             
     <ul class="sidebar-navigation"> 
