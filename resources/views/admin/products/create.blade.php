@@ -3,7 +3,7 @@
 @section('content')
 <h1>Add New Product</h1>
 <div class="container">
-<form action="{{ \LaravelLocalization::localizeURL(route('admin.products.store')) }}" method="post">
+<form action="{{ \LaravelLocalization::localizeURL(route('admin.products.store')) }}" method="post" enctype="multipart/form-data">
 <!-- <form id='productForm' action="#" > -->
     @include('errors')
     @csrf

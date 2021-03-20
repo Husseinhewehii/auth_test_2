@@ -31,7 +31,7 @@ class LoginAttemptRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required'    => 'email ist bitte required',
+            'email.required'    => 'email ist erforderlich',
             'email.email'    => 'email is invalid',
             'password.required'    => 'passwort is req',
         ];

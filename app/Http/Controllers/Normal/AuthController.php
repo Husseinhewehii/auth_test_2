@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Normal;
 
 use App\Constants\UserTypes;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Normal\LoginAttemptRequest;
+use App\Http\Requests\Admin\LoginAttemptRequest;
 use App\Http\Services\AuthService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;

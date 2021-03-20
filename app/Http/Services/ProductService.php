@@ -21,12 +21,13 @@ class ProductService
         }
 
         $product->fill($request->all());
-        
+        // echo "<pre>";print_r($request->all());die;
+        // echo $request->file('image');die;
         if (!empty($request->file('image'))) {
             // $product->image = $this->uploaderService->upload($request->file('image'), 'Products');
-            $product->image = $this->uploaderService->upload($request->file('image'), 'Products')
+            $product->image = $this->uploaderService->upload($request->file('image'), 'Products');
         }
-
+       
         $product->save();
 
         return $product;

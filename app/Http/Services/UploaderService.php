@@ -20,7 +20,7 @@ class UploaderService
         if (!File::exists($path)) {
             File::makeDirectory($path, 0777, true);
         }
-        echo 'hi';die;
+        
         $file_name = date('YmdHis') . mt_rand() . '_' . $folder . '.' . $file->getClientOriginalExtension();
 
         if ($file->move($path, $file_name)) {
