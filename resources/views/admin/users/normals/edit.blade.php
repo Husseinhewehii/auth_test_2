@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 <h1>Edit Admin</h1>
-<form action="{{ \LaravelLocalization::localizeURL(route('admin.users.update', ['user' => $user])) }}" method="post">
+<form action="{{ \LaravelLocalization::localizeURL(route('admin.normals.update', ['user' => $user])) }}" method="post">
     @csrf
     @method("PUT")
     <input type="hidden" name="id" value="{{ $user->id}}" />

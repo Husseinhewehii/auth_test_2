@@ -48,7 +48,9 @@
             <a class="dropdown-item" href="{{\LaravelLocalization::localizeURL(route('admin.users.index'))}}" style="color:black" rel="alternate" >
                 Admins
             </a>
-            
+            <a class="dropdown-item" href="{{\LaravelLocalization::localizeURL(route('admin.normals.index'))}}" style="color:black" rel="alternate" >
+                Normals
+            </a>     
         </ul>
     </li>
     <li>
@@ -60,6 +62,12 @@
     <li>
       <a href="#">
          Languages
+      </a>
+    </li>
+
+    <li>
+      <a href="{{\LaravelLocalization::localizeURL(route('admin.logout'))}}">
+         Logout
       </a>
     </li>
 

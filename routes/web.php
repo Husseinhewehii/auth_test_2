@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-
 Route::group([
     'prefix' => '{locale?}',
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ], function(){
 	/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 	Route::get('/', 'HomeController@home')->middleware('throttle:30,1')->name('home');
@@ -46,6 +46,9 @@ Route::group([
         Route::middleware('auth')->group(function(){
             Route::get('/dashboard', 'HomeController@index')->name('admin.home.index');
             Route::resource('users', 'UserAdminsController', ['as' => 'admin'])->except('show');
+            Route::resource('normals', 'UserNormalController', ['as' => 'admin', 'parameters' => [
+                'normals' => 'user'
+            ]])->except('show');
             Route::get('/logout', 'AuthController@logout')->name('admin.logout');
         });
     });

@@ -1,39 +1,37 @@
 @extends('admin.dashboard')
 
 @section('content')
+<h1>Add New Normal User</h1>
 <div class="container">
-<h1>Edit Admin</h1>
-<form action="{{ \LaravelLocalization::localizeURL(route('admin.users.update', ['user' => $user])) }}" method="post">
+<form action="{{ \LaravelLocalization::localizeURL(route('admin.normals.store')) }}" method="post">
     @csrf
-    @method("PUT")
-    <input type="hidden" name="id" value="{{ $user->id}}" />
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-4">
-        <input value="{{old('email', $user->email)}}" type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
+        <input value="{{old('email')}}" type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-4">
-        <input value="{{old('name', $user->name)}}" type="text" name="name" class="form-control" id="inputEmail3" placeholder="Name">
+        <input value="{{old('name')}}" type="text" name="name" class="form-control" id="inputEmail3" placeholder="Name">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-4">
-        <input value="{{old('password', $user->password)}}" type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+        <input value="{{old('password')}}" type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
         <div class="col-sm-4">
-        <input value="{{old('phone', $user->phone)}}" type="text" name="phone" class="form-control" id="inputEmail3" placeholder="Phone">
+        <input value="{{old('phone')}}" type="text" name="phone" class="form-control" id="inputEmail3" placeholder="Phone">
         </div>
     </div>
 	<div class="form-group row">
     		<div class="col-sm-10">
-      			<button type="submit" class="btn btn-primary">Update</button>
+      			<button type="submit" class="btn btn-primary">Create</button>
     		</div>
   	</div>
     </form>

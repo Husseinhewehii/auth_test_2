@@ -3,11 +3,14 @@
 @section('content')
     
     <div class="container">
+    <button style="margin:5px" class="btn btn-warning">
+        <a href="{{\LaravelLocalization::localizeURL(route('admin.users.create'))}}">Add New Admin</a>
+    </button>
         <div class="row">
             <div class="">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <span class="glyphicon glyphicon-list"></span>Admins List
+                        <span class="glyphicon glyphicon-list"></span>Admins List  
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
@@ -20,7 +23,16 @@
                                     </div>
                                     <div class="pull-right action-buttons">
                                         <a href="{{\LaravelLocalization::localizeURL(route('admin.users.edit',['user' => $user]))}}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <form method="POST" action="{{ \LaravelLocalization::localizeURL(route('admin.users.destroy', ['user' =>$user])) }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+
+                                            <div class="trash">
+                                                <span class="delete-user glyphicon glyphicon-trash" value="Delete user"></span>
+                                                <!-- <input type="submit" class="btn btn-danger delete-user" value="Delete user"> -->
+                                            </div>
+                                        </form>
+                                        <!-- <a  class="trash"><span class="glyphicon glyphicon-trash" ></span></a> -->
                                     </div>
                                 </li>
                             @endforeach
@@ -49,4 +61,22 @@
             </div>
         </div>
     </div>
+
+    
+
+
+
+@endsection
+
+@section('scripts')
+<script>
+    $('.delete-user').click(function(e){
+        e.preventDefault() // Don't post the form, unless confirmed
+        if (confirm('Are you sure you want to delete this user?')) {
+            // Post the form
+            $(e.target).closest('form').submit() // Post the surrounding form
+        }
+    });
+</script>
+
 @endsection
