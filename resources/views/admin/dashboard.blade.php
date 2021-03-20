@@ -43,7 +43,20 @@
          <a href="{{\LaravelLocalization::localizeURL(route('home'))}}">Home Web</a>
     </div>
             
-    <ul class="sidebar-navigation"> 
+    <ul class="sidebar-navigation">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Language
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                <a class="dropdown-item" style="color:black" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                    {{ $properties['native'] }}
+                </a>
+            @endforeach     
+        </ul>
+    </li>
+
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Users
@@ -51,21 +64,15 @@
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="{{\LaravelLocalization::localizeURL(route('admin.users.index'))}}" style="color:black" rel="alternate" >
                 Admins
-            </a>
+            </a> 
             <a class="dropdown-item" href="{{\LaravelLocalization::localizeURL(route('admin.normals.index'))}}" style="color:black" rel="alternate" >
-                Normals
-            </a>     
+                Normal
+            </a>   
         </ul>
     </li>
     <li>
       <a href="{{\LaravelLocalization::localizeURL(route('admin.products.index'))}}">
          Products
-      </a>
-    </li>
-
-    <li>
-      <a href="#">
-         Languages
       </a>
     </li>
 

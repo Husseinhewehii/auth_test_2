@@ -10,8 +10,8 @@ final class UserTypes
     public static function getList()
     {
         return [
-            UserTypes::ADMIN => trans("admin"),
-            UserTypes::NORMAL => trans("normal"),
+            UserTypes::ADMIN => 'admins',
+            UserTypes::NORMAL => 'normals',
         ];
     }
 

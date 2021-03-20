@@ -11,19 +11,20 @@
         <input type="hidden" id="name" name="name" value="">
         <input type="hidden" id="description" name="description" value="">
 
-        @foreach($languages as $language)
+        
+        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)   
             <div class="container" >
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{$language->title}} Name</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{$properties['name']}} Name</label>
                     <div class="col-sm-4">
-                    <input value="{{old('name_'.$language->slogan)}}" type="text" name="name_slogan" id="{{$language->slogan}}" class="form-control" id="inputEmail3" placeholder="Name">
+                    <input value="{{old('name_'.$localeCode)}}" type="text" name="name_slogan" id="{{$localeCode}}" class="form-control" id="inputEmail3" placeholder="Name">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{$language->title}} Description</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{$properties['name']}} Description</label>
                     <div class="col-sm-4">
-                    <textarea placeholder="Description" class="form-control" rows="6" name="description_slogan" id="{{$language->slogan}}">{{old('description_'.$language->slogan)}}</textarea>
+                    <textarea placeholder="Description" class="form-control" rows="6" name="description_slogan" id="{{$localeCode}}">{{old('description_'.$localeCode)}}</textarea>
                     </div>
                 </div>
             </div>

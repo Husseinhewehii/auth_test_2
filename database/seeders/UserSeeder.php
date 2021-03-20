@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'super@admin.com',
             'phone' => '01234567890',
             'status' => UserStatus::ACTIVE,
-            'password' =>Hash::make('test1234'),
+            'password' =>'test1234',
         ]);
         // factory(User::class, 10)->create();
 

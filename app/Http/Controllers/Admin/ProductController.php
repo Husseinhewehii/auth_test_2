@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductCreateRequest;
 use App\Http\Services\ProductService;
 use App\Models\Product;
-use App\Repositories\LanguageRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -18,9 +17,8 @@ class ProductController extends Controller
     protected $productRepository;
     protected $productService;
 
-    public function __construct(LanguageRepository $languageRepository, ProductRepository $productRepository, ProductService $prodcutService)
+    public function __construct(ProductRepository $productRepository, ProductService $prodcutService)
     {
-        $this->languageRepository = $languageRepository;
         $this->productRepository = $productRepository;
         $this->productService = $prodcutService;
     }
@@ -43,8 +41,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $languages = $this->languageRepository->getAllLanguages();
-        return view('admin.products.create', ['languages' => $languages]);
+        return view('admin.products.create');
     }
 
     /**
@@ -57,40 +54,6 @@ class ProductController extends Controller
     {
         $this->productService->fillFromRequest($request);
         return redirect(LaravelLocalization::localizeURL(route('admin.products.index')));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
     }
 
     /**

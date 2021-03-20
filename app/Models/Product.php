@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use App\Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
+
 
 class Product extends Model
 {

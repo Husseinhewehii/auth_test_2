@@ -10,6 +10,7 @@
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-5 listing-block">
+        <span>@productsCount({{$products}})</span>
             @foreach($products as $product)
             <?php $currentLocale = LaravelLocalization::setLocale(); ?>
                 <div class="media">

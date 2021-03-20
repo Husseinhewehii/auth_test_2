@@ -2,6 +2,6 @@
 
 @section('content')
     <h1>
-        <a href="{{LaravelLocalization::localizeURL(route('products.index'))}}">Products</a><span>(@productsCount)</span>
+        <a href="{{LaravelLocalization::localizeURL(route('products.index'))}}">Products</a>
     </h1>
 @endsection

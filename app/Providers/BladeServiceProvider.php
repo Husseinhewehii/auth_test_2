@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +30,8 @@ class BladeServiceProvider extends ServiceProvider
             return "Hello {$user}";
         });
 
-        Blade::directive('productsCount', function ($user) {
-            $productsCount = DB::table('products')->count();
+        Blade::directive('productsCount', function ($products) {
+            $productsCount = Product::count();
             return $productsCount;
         });
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Translatable;
+namespace App\Spatie\Translatable;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
